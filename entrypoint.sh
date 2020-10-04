@@ -102,6 +102,9 @@ function publish_to_s3 {
 
 chmod -R 777 .
 
+pwd
+ls -la
+
 validate_environment
 install_gems
 build_site
