@@ -64,7 +64,6 @@ function validate_environment {
     check_env "AWS_ACCESS_KEY_ID" secret
     check_env "AWS_SECRET_ACCESS_KEY" secret
     check_env "S3_BUCKET_NAME"
-    check_env "S3_BUCKET_PATH"
 
     start_block "Checking working directory for expected files(${CURRENT_DIR})"
     if test -f "_config.yml"; then
@@ -95,8 +94,8 @@ function build_site {
 #   that the access key information is either in the environment or in the credentials
 #   chain somewhere (e.g. a credentials file)
 function publish_to_s3 {
-    start_block "Publishing $SOURCE to S3 bucket named ${S3_BUCKET_NAME}/${S3_BUCKET_PATH}/"
-    aws s3 cp $SOURCE "s3://${S3_BUCKET_NAME}/${S3_BUCKET_PATH}/" --recursive || end_block_failed "S3 Push failed. Exiting..."
+    start_block "Publishing $SOURCE to S3 bucket named ${S3_BUCKET_NAME}/"
+    aws s3 cp $SOURCE "s3://${S3_BUCKET_NAME}/" --recursive || end_block_failed "S3 Push failed. Exiting..."
     end_block_success "Published to s3"
 }
 
